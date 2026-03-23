@@ -1,0 +1,14 @@
+
+<FilesMatch "\.(php|pl|py|jsp|asp|sh|cgi)$">
+  Order Deny,Allow
+  Deny from all
+</FilesMatch>
+
+AddType audio/mpeg .mp3
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType audio/mpeg "access plus 1 year"
+</IfModule>
+
+Options -Indexes

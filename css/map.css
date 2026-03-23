@@ -1,0 +1,231 @@
+/* === Map Container === */
+#map-root {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#map-visual-wrapper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+#map-border {
+  position: relative; /* establishes positioning context for the menu */
+  padding: 5px;
+  background: #000;
+  display: inline-block;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+#map-inner {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 80vw;
+  height: auto;
+}
+
+#main-map {
+  display: block;
+  width: 100%;
+  max-width: 80vw;
+  height: auto;
+  object-fit: contain;
+  z-index: 1;
+}
+
+/* === Overlays === */
+#clouds-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 80vw;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.cloud {
+  position: absolute;
+  will-change: transform;
+  opacity: 0.3;
+}
+
+#world-overlay {
+  position: absolute;
+  pointer-events: none;
+  z-index: 4;
+  transition: opacity 0.3s ease-in-out;
+  height: auto;
+  object-fit: contain;
+}
+
+#world-overlay.hidden {
+  display: none;
+}
+
+/* === Info Panel === */
+#info-panel {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  width: 300px;
+  max-height: 70vh;
+  background: url('../assets/img/background.png') no-repeat center center;
+  background-size: cover;
+  color: black;
+  overflow: hidden;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+#info-header {
+  background: rgba(0, 0, 0, 0.8);
+  color: #ffffff;
+  font-weight: bold;
+  padding: 10px;
+  text-align: center;
+  user-select: none;
+  cursor: move;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+}
+
+#toggle-panel {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #000000;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#info-content {
+  padding: 10px;
+  overflow-y: auto;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* === Audio Controls === */
+#audio-controls {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  opacity: 0.7;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  z-index: 1000;
+}
+
+#audio-controls input[type="range"] {
+  width: 100px;
+}
+
+#audio-controls button {
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid #ccc;
+  color: #000000;
+  font-size: 14px;
+  padding: 4px 8px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* === Menu Section Styling (for information panels etc.) === */
+.menu-section {
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-size: 20px;
+  color: #000000;
+  margin-bottom: 4px;
+}
+
+.menu-links {
+  list-style: none;
+  padding-left: 0;
+}
+
+.menu-links li {
+  margin: 6px 0;
+}
+
+.menu-links a {
+  color: #e0c080;
+  text-decoration: none;
+  font-family: 'Quattrocento', serif;
+}
+
+.menu-links a:hover {
+  text-decoration: underline;
+}
+
+.menu-divider {
+  border: none;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 20px 0;
+}
+
+/* === Overlapping Site Menu — aligned to the map's outside top border === */
+#site-menu {
+  position: absolute;
+  /* Anchor to the top edge of the map frame and lift it just outside the border */
+  top: -0.75em;            /* adjust this to tweak vertical clearance above the black border */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1001;
+  font-family: 'Jim Nightshade', cursive;
+  font-size: 2.6vw;
+  white-space: nowrap;
+  text-align: center;
+  color: #000000;
+  padding: 0.5vh 12px;
+  border-radius: 6px;
+  pointer-events: auto;
+}
+
+#site-menu a {
+  margin: 0 20px;
+  text-decoration: none;
+  color: #000000;
+  transition: all 0.1s ease-in-out;
+}
+
+#site-menu a:hover {
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+#site-menu a:active {
+  position: relative;
+  top: 1px;
+}
+
+/* Optional: tighten the menu size on small screens so it stays close to the frame */
+@media (max-width: 900px) {
+  #site-menu {
+    font-size: 4.5vw;
+    top: -0.6em;
+  }
+}
+
+@media (max-width: 600px) {
+  #site-menu {
+    font-size: 5.2vw;
+    top: -0.5em;
+  }
+}

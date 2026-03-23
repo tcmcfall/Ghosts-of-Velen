@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Weather Panel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Correct relative paths from /panels/ -->
+  <link rel="stylesheet" href="../css/global.css" />
+  <!-- The weather panel’s content doesn’t need overlay CSS; the outer window provides that.
+       Keep styling minimal and rely on existing global styles. -->
+  <style>
+    .page-container {
+      padding: 1rem 1.25rem;
+    }
+    .content-container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .weather-section + .weather-section {
+      margin-top: 1.25rem;
+    }
+    .kbd {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      padding: .1em .35em;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background: #f7f7f7;
+    }
+    h1, h2 {
+      font-family: 'Quattrocento', serif;
+      margin: 0 0 .5rem 0;
+      line-height: 1.2;
+    }
+    p {
+      margin: .25rem 0;
+    }
+    ul {
+      margin: .5rem 0 .5rem 1.25rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-container">
+    <main class="content-container" aria-labelledby="weather-title">
+      <h1 id="weather-title">Weather Panel</h1>
+
+      <section class="weather-section" aria-labelledby="weather-overview">
+        <h2 id="weather-overview">Overview</h2>
+        <p>
+          This panel displays campaign weather information and reference material.
+          It is designed to pair with the Calendar window; when the DM advances the in-world
+          date, the active season and prevailing conditions can be interpreted alongside the calendar view.
+        </p>
+      </section>
+
+      <section class="weather-section" aria-labelledby="usage">
+        <h2 id="usage">Usage</h2>
+        <ul>
+          <li>Open the Calendar (menu ? <span class="kbd">Calendar</span>) to navigate the in-world date.</li>
+          <li>Use the Weather window for season and condition lookups or notes.</li>
+        </ul>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

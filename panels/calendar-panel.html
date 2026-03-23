@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Harptos Calendar</title>
+  <!-- panels/ -> css/ -->
+  <link rel="stylesheet" href="../css/calendar-panel.css">
+</head>
+<body>
+  <div id="calendar">
+    <div class="calendar-controls">
+      <button id="btn-prev" type="button">?</button>
+      <span id="calendar-month-year"></span>
+      <button id="btn-next" type="button">?</button>
+      <button id="btn-today" type="button">Today</button>
+    </div>
+    <div id="calendar-grid" aria-live="polite"></div>
+  </div>
+
+  <script>
+    // ===== Harptos basics (30-day months) =====
+    const HARPTOS_MONTHS = [
+      "Hammer", "Alturiak", "Ches", "Tarsakh", "Mirtul", "Kythorn",
+      "Flamerule", "Eleasis", "Eleint", "Marpenoth", "Uktar", "Nightal"
+    ];
+
+    // Default "today" per campaign requirement
+    const TODAY = { year: 1492, monthIdx: 6, day: 15 }; // Flamerule = index 6
+
+    // Current view state
+    let view = { year: TODAY.year, monthIdx: TODAY.monthIdx };
+
+    // DOM refs
+    const monthYearEl = document.getElementById("calendar-month-year");
+    const gridEl = document.getElementById("calendar-grid");
+
+    // Render a 6x5 grid (30 days) as styled in CSS
+    function renderCalendar() {
+      const monthName = HARPTOS_MONTHS[view.monthIdx];
+      monthYearEl.textContent = `${monthName}, ${view.year} DR`;
+
+      // Build 30 cells
+      const frag = document.createDocumentFragment();
+      for (let d = 1; d <= 30; d++) {
+        const cell = document.createElement("div");
+        cell.className = "calendar-cell";
+        cell.textContent = d;
+
+        if (
+          view.year === TODAY.year &&
+          view.monthIdx === TODAY.monthIdx &&
+          d === TODAY.day
+        ) {
+          cell.classList.add("today");
+          cell.setAttribute("aria-current", "date");
+        }
+
+        frag.appendChild(cell);
+      }
+
+      gridEl.innerHTML = "";
+      gridEl.appendChild(frag);
+    }
+
+    // Navigation
+    function goToPreviousMonth() {
+      if (view.monthIdx === 0) {
+        view.monthIdx = 11;
+        view.year -= 1;
+      } else {
+        view.monthIdx -= 1;
+      }
+      renderCalendar();
+    }
+
+    function goToNextMonth() {
+      if (view.monthIdx === 11) {
+        view.monthIdx = 0;
+        view.year += 1;
+      } else {
+        view.monthIdx += 1;
+      }
+      renderCalendar();
+    }
+
+    function goToToday() {
+      view.year = TODAY.year;
+      view.monthIdx = TODAY.monthIdx;
+      renderCalendar();
+    }
+
+    // Wire up controls
+    document.getElementById("btn-prev").addEventListener("click", goToPreviousMonth);
+    document.getElementById("btn-next").addEventListener("click", goToNextMonth);
+    document.getElementById("btn-today").addEventListener("click", goToToday);
+
+    // Expose for inline handlers if needed elsewhere
+    window.goToPreviousMonth = goToPreviousMonth;
+    window.goToNextMonth = goToNextMonth;
+    window.goToToday = goToToday;
+
+    // Initial paint
+    renderCalendar();
+  </script>
+</body>
+</html>

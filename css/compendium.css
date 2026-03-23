@@ -1,0 +1,119 @@
+/* === Compendium Styling === */
+
+/* Parchment background */
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 500px;
+  background: url('../../assets/img/background.png') no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Quattrocento', serif;
+  color: #000;
+  line-height: 1.6;
+  max-width: 1920px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Sepia banner */
+.sepia-banner-container {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.media-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 16.66%; /* 6:1 aspect ratio */
+}
+
+.media-wrapper img,
+.media-wrapper video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 1.5s ease;
+  pointer-events: none;
+  opacity: 0;
+}
+
+#static-frame-info {
+  filter: sepia(1) brightness(0.85) contrast(1.1);
+  z-index: 2;
+  opacity: 1;
+}
+
+#animated-frame-info {
+  z-index: 1;
+  opacity: 0;
+}
+
+/* Page container */
+.page-container {
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+/* Content styling */
+.content-container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 2rem;
+  background: rgba(255, 255, 240, 0.95);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  border: 2px solid #000;
+  border-radius: 10px;
+}
+
+/* Headings */
+h1 {
+  font-family: 'Jim Nightshade', cursive;
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+/* Blockquote / Quotes */
+blockquote {
+  margin: 1.5rem 0;
+  padding: 1rem 1.5rem;
+  border-left: 4px solid #444;
+  background-color: rgba(255, 255, 255, 0.6);
+  font-style: italic;
+}
+
+blockquote footer {
+  text-align: right;
+  font-style: normal;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+/* Descriptive sections */
+.narrative {
+  background-color: rgba(250, 245, 230, 0.8);
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  border-left: 5px solid #a57c52;
+  font-size: 1.05rem;
+}
+
+/* Lore-style definition list */
+dl {
+  margin-top: 2rem;
+}
+
+dt {
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+dd {
+  margin-left: 1rem;
+}

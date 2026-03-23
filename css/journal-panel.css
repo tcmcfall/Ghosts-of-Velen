@@ -1,0 +1,121 @@
+/* css/journal-panel.css
+   Drop-in replacement for overlay panels opened by journal-panel.js
+*/
+
+/* ===== Overlay Panel (container) ===== */
+.overlay-panel {
+  position: absolute;
+  top: 60px;
+  left: 60px;
+
+  width: 500px;
+  height: 800px;
+  min-width: 360px;           /* keep header controls usable */
+  min-height: 180px;          /* header + a bit of iframe */
+
+  z-index: 9999;
+
+  display: flex;              /* header + iframe column */
+  flex-direction: column;
+
+  border: 3px solid #000;
+  border-radius: 10px;
+  overflow: hidden;
+  resize: both;
+
+  background: #0b0b0b url('../assets/img/background.png') center/cover no-repeat;
+
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+}
+
+/* ===== IFrame fills remaining space beneath header ===== */
+.overlay-panel iframe {
+  flex: 1 1 auto;             /* take the rest of the height */
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
+}
+
+/* ===== Header bar (drag handle) ===== */
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  height: 40px;               /* IMPORTANT: matches minimize height in JS */
+  padding: 4px 10px 4px 12px;
+
+  background: rgba(0, 0, 0, 0.75);
+  color: #ffffff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+
+  font-family: 'Jim Nightshade', cursive;
+  user-select: none;
+  cursor: move;
+}
+
+/* Title styling and truncation if narrow */
+.panel-title {
+  font-size: 1.25rem;
+  line-height: 1;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Container for the window buttons in the header */
+.panel-header > div {
+  display: flex;
+  gap: 6px;
+}
+
+/* ===== Window control buttons ===== */
+.panel-header button {
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 6px;
+
+  width: 28px;
+  height: 28px;
+  padding: 0;
+
+  display: grid;
+  place-items: center;
+
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 120ms ease-in-out, color 120ms ease-in-out, border-color 120ms ease-in-out;
+}
+
+.panel-header button:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
+.panel-header button:active {
+  transform: translateY(1px);
+}
+
+.panel-header button:focus-visible {
+  outline: 2px solid #e0c080;
+  outline-offset: 2px;
+}
+
+/* ===== Responsive tuning ===== */
+@media (max-width: 900px) {
+  .overlay-panel {
+    top: 4vw;
+    left: 4vw;
+    width: min(92vw, 560px);
+    height: 70vh;
+  }
+  .panel-title {
+    font-size: 1.1rem;
+  }
+}

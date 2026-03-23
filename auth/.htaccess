@@ -1,0 +1,37 @@
+# .htaccess for /auth directory
+
+# Restrict direct access to sensitive files
+<FilesMatch "^(db_connect|auth_check|request_membership)\.php$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+# Enable PHP security and performance optimizations
+<IfModule mod_php8.c>
+    php_flag display_errors Off
+    php_flag expose_php Off
+</IfModule>
+
+# Disable directory listing
+Options -Indexes
+
+# Protect .htaccess itself
+<Files .htaccess>
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+# Set content-type security headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# Allow only POST requests to sensitive endpoints
+<FilesMatch "^(request_membership|forgot_password|forgot_username)\.php$">
+    <LimitExcept POST>
+        Order Deny,Allow
+        Deny from all
+    </LimitExcept>
+</FilesMatch>

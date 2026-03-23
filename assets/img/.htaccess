@@ -1,0 +1,13 @@
+
+<FilesMatch "\.(php|pl|py|jsp|asp|sh|cgi)$">
+  Order Deny,Allow
+  Deny from all
+</FilesMatch>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+</IfModule>
+
+Options -Indexes

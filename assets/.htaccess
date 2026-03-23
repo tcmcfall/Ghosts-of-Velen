@@ -1,0 +1,7 @@
+# Prevent PHP execution in assets
+<FilesMatch "\.php$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+Options -Indexes

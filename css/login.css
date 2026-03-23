@@ -1,0 +1,294 @@
+/* Ensure padding/borders don't cause overflow */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* --- Page overrides for login layout --- */
+html, body {
+  height: 100%;
+  /* Important: allow reCAPTCHA banner to expand on hover */
+  overflow: visible;
+}
+
+/* Root layout (keeps parchment background from global.css visible around edges) */
+#login-page-root {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Center the splash like the map canvas does */
+#visual-wrapper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+/* Match map frame’s small black border (padding: 5px; background: #000; shadow) */
+#splash-border {
+  position: relative;      /* positioning context for overlays */
+  padding: 5px;            /* matches #map-border padding */
+  background: #000;
+  display: inline-block;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+/* Keep inner content constrained similar to map (max-width: 80vw) */
+#splash-inner {
+  position: relative;      /* positioning context for title + form overlays */
+  overflow: hidden;
+  width: 100%;
+  max-width: 80vw;         /* mirrors #map-inner/#main-map behavior */
+  height: auto;
+}
+
+#splash-image {
+  display: block;
+  width: 100%;
+  max-width: 80vw;         /* mirrors #main-map */
+  height: auto;
+  object-fit: contain;
+}
+
+/* Title image: centered and bottom-justified (inside the image area) */
+#page-title {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(8px, 2vh, 24px);
+  transform: translateX(-50%);
+  z-index: 2;
+  max-width: 70%;
+  height: auto;
+  pointer-events: none;
+}
+
+/* Login form: centered on the image */
+.login-form-container {
+  position: absolute;      /* anchor to #splash-inner */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;              /* above the title if they overlap */
+}
+
+/* 25% transparency on the form background ONLY (text remains crisp) */
+.login-form-container form {
+  background: rgba(255, 255, 255, 0.75);
+  margin: 0;               /* override global centered form margin */
+}
+
+/* Keep semantic heading for accessibility but don’t visually clash */
+.visually-hidden {
+  position: absolute !important;
+  height: 1px; width: 1px; overflow: hidden;
+  clip: rect(1px,1px,1px,1px); white-space: nowrap;
+}
+
+/* Error styles (support both .error and .error-message) */
+.error,
+.error-message {
+  color: red;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* reCAPTCHA v3 badge: visible with hover banner, above overlays; let Google control its state */
+.grecaptcha-badge {
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  z-index: 2147483647;
+}
+
+/* ===== Hamburger + Dispatch Drawer ===== */
+#hamburger-btn {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 2005;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #000;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.75);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+#hamburger-btn .bars {
+  width: 22px; height: 16px; position: relative;
+}
+#hamburger-btn .bars::before,
+#hamburger-btn .bars::after,
+#hamburger-btn .bar-mid {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #000;
+}
+#hamburger-btn .bars::before { top: 0; }
+#hamburger-btn .bar-mid      { top: 7px; }
+#hamburger-btn .bars::after  { bottom: 0; }
+
+#blog-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: clamp(280px, 28vw, 420px);
+  transform: translateX(-100%);
+  transition: transform .28s ease-in-out;
+  z-index: 2004;
+  background: rgba(255,255,255,0.75);
+  border-right: 3px solid #000;
+  box-shadow: 0 0 15px rgba(0,0,0,.5);
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(1px);
+}
+#blog-drawer.open { transform: translateX(0); }
+
+.blog-drawer__header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* right-justify title */
+  padding: 10px 12px;
+  background: rgba(0,0,0,0.75);
+  color: #fff;
+  font-family: 'Jim Nightshade', cursive;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  user-select: none;
+}
+.blog-drawer__title {
+  margin: 0;
+  font-size: 20px;
+  text-align: right;
+  width: 100%;
+}
+.blog-drawer__content {
+  padding: 12px;
+  overflow-y: auto;
+  font-family: 'Quattrocento', serif;
+  color: #000;
+}
+
+.blog-entry {
+  border: 1px solid #000;
+  background: rgba(255,255,255,0.85);
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+}
+.blog-entry h3 {
+  margin: 0 0 6px 0;
+  font-family: 'Jim Nightshade', cursive;
+  color: #000;
+}
+.blog-entry time {
+  font-size: 12px; color: #333; display: block; margin-bottom: 6px;
+}
+.blog-entry .content {
+  font-size: 14px; line-height: 1.5;
+  word-wrap: break-word;
+}
+.blog-entry img, .blog-entry video, .blog-entry iframe {
+  max-width: 100%; height: auto; display: block; margin: 8px 0;
+}
+
+/* --- Global form styles already present --- */
+/* Form shell */
+form {
+  background: #fff;
+  padding: 20px;
+  margin: 0 auto;        /* center the form by default */
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+  max-width: 400px;      /* polite fixed max width */
+  font-family: 'Quattrocento', serif;
+}
+
+/* Labels align nicely with full-width inputs */
+label {
+  display: block;
+  margin: 10px 0 6px;
+  font-weight: 600;
+}
+
+/* Inputs and button fill the form without spilling */
+input[type="text"],
+input[type="password"],
+button {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  padding: 10px;
+  margin: 0 0 12px 0;
+  font-family: 'Quattrocento', serif;
+}
+
+/* Inputs: tidy borders and focus state */
+input[type="text"],
+input[type="password"] {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+}
+input[type="text"]:focus,
+input[type="password"]:focus {
+  border-color: #999;
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.05);
+}
+
+/* Button styling */
+button {
+  border: 1px solid #444;
+  border-radius: 4px;
+  background: #222;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+}
+button:hover,
+button:focus {
+  filter: brightness(1.05);
+}
+
+/* Recaptcha note + small link */
+.recaptcha-disclaimer {
+  text-align: center;
+  font-size: 0.85em;
+  color: #555;
+  margin-top: 10px;
+}
+.small-link {
+  font-size: 0.9em;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+/* Responsive tweaks for very small screens */
+@media (max-width: 420px) {
+  form {
+    padding: 16px;
+    border-radius: 4px;
+  }
+  label {
+    margin: 8px 0 6px;
+  }
+  input[type="text"],
+  input[type="password"],
+  button {
+    padding: 9px;
+    margin-bottom: 10px;
+  }
+}

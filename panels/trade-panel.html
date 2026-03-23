@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Trade Panel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Correct relative paths from /panels/ -->
+  <link rel="stylesheet" href="../css/global.css" />
+  <style>
+    .page-container { padding: 1rem 1.25rem; }
+    .content-container { max-width: 960px; margin: 0 auto; }
+    .section + .section { margin-top: 1.25rem; }
+    h1, h2 { font-family: 'Quattrocento', serif; margin: 0 0 .5rem 0; line-height: 1.2; }
+    p { margin: .25rem 0; }
+    ul { margin: .5rem 0 .5rem 1.25rem; }
+    .kbd {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      padding: .1em .35em; border: 1px solid #ccc; border-radius: 4px; background: #f7f7f7;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-container">
+    <main class="content-container" aria-labelledby="trade-title">
+      <h1 id="trade-title">Trade Panel</h1>
+
+      <section class="section" aria-labelledby="trade-overview">
+        <h2 id="trade-overview">Overview</h2>
+        <p>
+          This panel presents campaign trade information and reference material. It’s designed
+          to pair with the Calendar and (eventually) economic overlays on the world map.
+        </p>
+      </section>
+
+      <section class="section" aria-labelledby="trade-usage">
+        <h2 id="trade-usage">Usage</h2>
+        <ul>
+          <li>Open the Calendar (menu ? <span class="kbd">Calendar</span>) to set the in-world date.</li>
+          <li>Use the Trade window for market notes, prices, tariffs, and route references.</li>
+        </ul>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
