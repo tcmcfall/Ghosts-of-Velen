@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 // panels/character-picker.php
 declare(strict_types=1);
 

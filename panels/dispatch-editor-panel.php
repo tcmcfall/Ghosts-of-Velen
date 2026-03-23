@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 // panels/dispatch-editor-panel.php
 declare(strict_types=1);
 

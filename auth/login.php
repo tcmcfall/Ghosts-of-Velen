@@ -147,7 +147,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
                 try {
                     $pdo = db();
                     $stmt = $pdo->prepare(
-                        'SELECT id, username, role, password, password_hash, is_active
+                        'SELECT *
                            FROM users
                           WHERE username = :username
                           LIMIT 1'
@@ -219,18 +219,60 @@ $token = htmlspecialchars(csrf_token(), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
     <script src="https://www.google.com/recaptcha/api.js?render=<?php echo htmlspecialchars($recaptchaSiteKey, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?>"></script>
     <script>
       document.addEventListener('DOMContentLoaded', function () {
-        if (typeof grecaptcha === 'undefined') {
+        var form = document.getElementById('login-form');
+        var target = document.getElementById('g-recaptcha-response');
+        var submitButton = form ? form.querySelector('button[type="submit"]') : null;
+        var clientError = document.getElementById('recaptcha-client-error');
+        var requestInFlight = false;
+
+        function setClientError(message) {
+          if (!clientError) {
+            return;
+          }
+
+          clientError.textContent = message;
+          clientError.hidden = message === '';
+        }
+
+        if (!form || !target) {
           return;
         }
 
-        grecaptcha.ready(function () {
-          grecaptcha.execute('<?php echo htmlspecialchars($recaptchaSiteKey, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?>', { action: 'login' })
-            .then(function (token) {
-              var target = document.getElementById('g-recaptcha-response');
-              if (target) {
+        form.addEventListener('submit', function (event) {
+          if (requestInFlight) {
+            event.preventDefault();
+            return;
+          }
+
+          if (typeof grecaptcha === 'undefined') {
+            event.preventDefault();
+            setClientError('reCAPTCHA validation failed. Please refresh and try again.');
+            return;
+          }
+
+          event.preventDefault();
+          requestInFlight = true;
+          target.value = '';
+          setClientError('');
+
+          if (submitButton) {
+            submitButton.disabled = true;
+          }
+
+          grecaptcha.ready(function () {
+            grecaptcha.execute('<?php echo htmlspecialchars($recaptchaSiteKey, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?>', { action: 'login' })
+              .then(function (token) {
                 target.value = token;
-              }
-            });
+                form.submit();
+              })
+              .catch(function () {
+                requestInFlight = false;
+                if (submitButton) {
+                  submitButton.disabled = false;
+                }
+                setClientError('reCAPTCHA validation failed. Please try again.');
+              });
+          });
         });
       });
     </script>
@@ -256,7 +298,7 @@ $token = htmlspecialchars(csrf_token(), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
           <img id="page-title" src="../assets/img/gov_title.png" alt="Ghosts of Velen">
           <div class="login-form-container">
             <h1 class="visually-hidden">Ghosts of Velen</h1>
-            <form action="/auth/login.php" method="post" autocomplete="off" novalidate>
+            <form id="login-form" action="/auth/login.php" method="post" autocomplete="off" novalidate>
               <?php echo csrf_input(); ?>
               <label for="username">Username:</label>
               <input type="text" id="username" name="username" required autofocus>
@@ -265,6 +307,7 @@ $token = htmlspecialchars(csrf_token(), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
               <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
               <button type="submit">Login</button>
             </form>
+            <p id="recaptcha-client-error" class="error-message" hidden></p>
 
             <?php if ($notice !== ''): ?>
               <p class="error-message" style="color:#1f5f32;"><?php echo h($notice); ?></p>
