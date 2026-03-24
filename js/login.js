@@ -1,5 +1,5 @@
 (function () {
-  // --- Random splash image (1..10), rotating every 5 seconds without immediate repeats ---
+  // --- Random splash image (1..10), rotating every 30 seconds without immediate repeats ---
   var imgEl = document.getElementById('splash-image');
   if (imgEl) {
     var basePath = '../assets/img/login/';
@@ -7,7 +7,7 @@
     var ext = '.png';
     var total = 10;
     var key = 'gov_lastSplash';
-    var rotationDelayMs = 5000;
+    var rotationDelayMs = 30000;
     var filenames = [];
     var current = null;
     var rotationTimer = null;
