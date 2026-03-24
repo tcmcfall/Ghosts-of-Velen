@@ -1,5 +1,5 @@
 (function () {
-  // --- Random splash image (1..10) excluding the previously displayed one ---
+  // --- Random splash image (1..10), rotating every 5 seconds without immediate repeats ---
   var imgEl = document.getElementById('splash-image');
   if (imgEl) {
     var basePath = '../assets/img/login/';
@@ -7,22 +7,79 @@
     var ext = '.png';
     var total = 10;
     var key = 'gov_lastSplash';
+    var rotationDelayMs = 5000;
+    var filenames = [];
+    var current = null;
+    var rotationTimer = null;
 
-    function pad2(n){ return String(n).padStart(2,'0'); }
+    function pad2(n) { return String(n).padStart(2, '0'); }
+    function buildPath(filename) { return basePath + filename; }
 
-    var last = null;
-    try { last = localStorage.getItem(key) || null; } catch (e) {}
-
-    var candidates = [];
     for (var i = 1; i <= total; i++) {
-      var fname = prefix + pad2(i) + ext;
-      if (fname !== last) candidates.push(fname);
+      filenames.push(prefix + pad2(i) + ext);
     }
 
-    var chosen = candidates[Math.floor(Math.random() * candidates.length)];
-    imgEl.src = basePath + chosen;
+    function readLastSplash() {
+      try { return localStorage.getItem(key) || null; } catch (e) {}
+      return null;
+    }
 
-    try { localStorage.setItem(key, chosen); } catch (e) {}
+    function persistSplash(filename) {
+      try { localStorage.setItem(key, filename); } catch (e) {}
+    }
+
+    function chooseRandomSplash(excluded) {
+      var candidates = filenames.filter(function (filename) {
+        return filename !== excluded;
+      });
+
+      if (candidates.length === 0) {
+        return excluded || filenames[0] || null;
+      }
+
+      return candidates[Math.floor(Math.random() * candidates.length)];
+    }
+
+    function applySplash(filename) {
+      if (!filename) {
+        return;
+      }
+
+      current = filename;
+      imgEl.src = buildPath(filename);
+      persistSplash(filename);
+    }
+
+    function rotateSplash() {
+      if (filenames.length <= 1) {
+        return;
+      }
+
+      applySplash(chooseRandomSplash(current));
+    }
+
+    filenames.forEach(function (filename) {
+      var preload = new Image();
+      preload.src = buildPath(filename);
+    });
+
+    applySplash(chooseRandomSplash(readLastSplash()));
+    rotationTimer = window.setInterval(rotateSplash, rotationDelayMs);
+
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) {
+        if (rotationTimer !== null) {
+          window.clearInterval(rotationTimer);
+          rotationTimer = null;
+        }
+        return;
+      }
+
+      if (rotationTimer === null && filenames.length > 1) {
+        rotateSplash();
+        rotationTimer = window.setInterval(rotateSplash, rotationDelayMs);
+      }
+    });
   }
 
   // --- Dispatch drawer: toggle + fetch entries on open ---
