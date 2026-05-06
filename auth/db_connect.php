@@ -29,7 +29,9 @@ final class DbConfig
 
     public static function fromEnv(string $projectRoot): self
     {
+        // Prefer project-root .env, then fall back to parent directory .env.
         self::loadDotEnvIfPresent($projectRoot.'/.env');
+        self::loadDotEnvIfPresent(dirname($projectRoot).'/.env');
 
         $env = fn(string $k, ?string $default = null) =>
             array_key_exists($k, $_ENV) ? trim((string)$_ENV[$k]) :
@@ -64,18 +66,14 @@ final class DbConfig
 
     private static function loadDotEnvIfPresent(string $path): void
     {
-        if (!is_file($path) || !is_readable($path)) {
+        if (!is_file($path)) {
             return;
         }
-        // Very small .env parser (no dependencies). Supports KEY=VALUE and # comments.
-        $lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) ?: [];
+        // Very small .env parser (no dependencies). Supports KEY=VALUE and inline comments.
+        $lines = @file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) ?: [];
         foreach ($lines as $line) {
             $line = trim($line);
-            if ($line === '' || str_starts_with($line, '#')) continue;
-            // Allow inline comments: KEY=VALUE # comment
-            if (strpos($line, '#') !== false) {
-                $line = preg_replace('/\s+#.*$/', '', $line) ?? $line;
-            }
+            if ($line === '' || str_starts_with($line, '#') || str_starts_with($line, ';')) continue;
             $parts = explode('=', $line, 2);
             if (count($parts) !== 2) continue;
             [$k, $v] = [trim($parts[0]), trim($parts[1])];
@@ -84,6 +82,10 @@ final class DbConfig
             if ((str_starts_with($v, '"') && str_ends_with($v, '"')) ||
                 (str_starts_with($v, "'") && str_ends_with($v, "'"))) {
                 $v = substr($v, 1, -1);
+            } else {
+                // Unquoted values: allow inline comments after whitespace.
+                $v = preg_replace('/\s+[;#].*$/', '', $v) ?? $v;
+                $v = rtrim($v);
             }
 
             $_ENV[$k] = $v;
@@ -141,23 +143,29 @@ final class Db
         // SSL options
         $sslOptions = [];
         if ($cfg->sslMode !== 'disable') {
+            $setMysqlOpt = static function (array &$opts, string $constantName, $value): void {
+                if (defined($constantName)) {
+                    $opts[constant($constantName)] = $value;
+                }
+            };
+
             // If a CA is provided, use it; otherwise rely on system trust store if available.
             if ($cfg->sslCA && is_readable($cfg->sslCA)) {
-                $sslOptions[\PDO::MYSQL_ATTR_SSL_CA] = $cfg->sslCA;
+                $setMysqlOpt($sslOptions, 'PDO::MYSQL_ATTR_SSL_CA', $cfg->sslCA);
             }
             if ($cfg->sslCert && is_readable($cfg->sslCert)) {
-                $sslOptions[\PDO::MYSQL_ATTR_SSL_CERT] = $cfg->sslCert;
+                $setMysqlOpt($sslOptions, 'PDO::MYSQL_ATTR_SSL_CERT', $cfg->sslCert);
             }
             if ($cfg->sslKey && is_readable($cfg->sslKey)) {
-                $sslOptions[\PDO::MYSQL_ATTR_SSL_KEY] = $cfg->sslKey;
+                $setMysqlOpt($sslOptions, 'PDO::MYSQL_ATTR_SSL_KEY', $cfg->sslKey);
             }
             if ($cfg->sslCipher) {
-                $sslOptions[\PDO::MYSQL_ATTR_SSL_CIPHER] = $cfg->sslCipher;
+                $setMysqlOpt($sslOptions, 'PDO::MYSQL_ATTR_SSL_CIPHER', $cfg->sslCipher);
             }
 
             // Some hosts negotiate TLS without explicit CA if server is public+trusted.
             // We still set the SSL flags to request TLS.
-            $sslOptions[\PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT] = false; // do NOT echo cert failures; rely on CA if provided
+            $setMysqlOpt($sslOptions, 'PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT', false); // do NOT echo cert failures; rely on CA if provided
         }
 
         // Merge options

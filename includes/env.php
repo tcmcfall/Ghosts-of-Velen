@@ -64,7 +64,7 @@ if (!function_exists('env')) {
  */
 function _env_load_from_file(): array {
     $path = dirname(__DIR__, 2) . '/.env'; // includes/ -> up 2 -> parent of ghostsofvelen/
-    if (!is_readable($path)) {
+    if (!is_file($path)) {
         return [];
     }
 
@@ -105,7 +105,7 @@ function _env_load_from_file(): array {
         } else {
             // Unquoted: strip inline comments starting with space-# or tab-#
             // (Keeps URLs with '#' if no preceding whitespace)
-            $v = preg_replace('/\s+#.*$/', '', $v) ?? $v;
+            $v = preg_replace('/\s+[;#].*$/', '', $v) ?? $v;
             $v = trim($v);
         }
 

@@ -40,8 +40,8 @@ if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] === 'dev') {
 
 /* -------- helper -------- */
 function load_env_fallback($envPath) {
-  if (!is_readable($envPath)) { return; }
-  $lines = file($envPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+  if (!is_file($envPath)) { return; }
+  $lines = @file($envPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
   if (!is_array($lines)) { return; }
 
   foreach ($lines as $line) {
@@ -56,6 +56,10 @@ function load_env_fallback($envPath) {
     // Strip surrounding quotes if present
     if ($val !== '' && ($val[0] === '"' || $val[0] === "'") && substr($val, -1) === $val[0]) {
       $val = substr($val, 1, -1);
+    } else {
+      // Unquoted values: allow inline comments after whitespace.
+      $val = preg_replace('/\s+[;#].*$/', '', $val) ?? $val;
+      $val = rtrim($val);
     }
 
     if (!isset($_ENV[$key]))    { $_ENV[$key]    = $val; }
