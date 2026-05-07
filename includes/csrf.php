@@ -134,7 +134,7 @@ function csrf_validate_request(): bool {
  * Enforce CSRF protection and terminate if invalid.
  * Optionally restrict by HTTP methods (e.g., ['POST']).
  */
-function csrf_enforce(array $allowedMethods = null): void {
+function csrf_enforce(?array $allowedMethods = null): void {
     $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
     if ($allowedMethods !== null && !in_array($method, $allowedMethods, true)) {
         http_response_code(405);
