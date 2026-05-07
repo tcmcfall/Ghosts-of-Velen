@@ -58,27 +58,40 @@
       applySplash(chooseRandomSplash(current));
     }
 
+    function stopRotation() {
+      if (rotationTimer !== null) {
+        window.clearInterval(rotationTimer);
+        rotationTimer = null;
+      }
+    }
+
+    function startRotation() {
+      if (rotationTimer !== null || filenames.length <= 1 || document.hidden) {
+        return;
+      }
+
+      rotationTimer = window.setInterval(rotateSplash, rotationDelayMs);
+    }
+
     filenames.forEach(function (filename) {
       var preload = new Image();
       preload.src = buildPath(filename);
     });
 
     applySplash(chooseRandomSplash(readLastSplash()));
-    rotationTimer = window.setInterval(rotateSplash, rotationDelayMs);
+    startRotation();
 
     document.addEventListener('visibilitychange', function () {
       if (document.hidden) {
-        if (rotationTimer !== null) {
-          window.clearInterval(rotationTimer);
-          rotationTimer = null;
-        }
+        stopRotation();
         return;
       }
 
       if (rotationTimer === null && filenames.length > 1) {
         rotateSplash();
-        rotationTimer = window.setInterval(rotateSplash, rotationDelayMs);
       }
+
+      startRotation();
     });
   }
 
