@@ -88,9 +88,14 @@ final class DbConfig
                 $v = rtrim($v);
             }
 
-            $_ENV[$k] = $v;
-            // Keep getenv() in sync for code that reads env values through it.
-            putenv("$k=$v");
+            if (!array_key_exists($k, $_ENV)) {
+                $_ENV[$k] = $v;
+            }
+            // Keep getenv() in sync for code that reads env values through it,
+            // but do not override values that were loaded earlier.
+            if (getenv($k) === false) {
+                putenv("$k=$v");
+            }
         }
     }
 
