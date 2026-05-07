@@ -1,0 +1,226 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  overflow: auto;
+}
+
+#fts-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(18px, 3vh, 40px);
+}
+
+#fts-shell {
+  width: min(1080px, 95vw);
+}
+
+#fts-hero-border {
+  padding: 5px;
+  background: #000;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+#fts-hero-inner {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  max-height: 52vh;
+}
+
+#fts-hero-art {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+#fts-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top, rgba(14, 11, 8, 0.76) 0%, rgba(14, 11, 8, 0.16) 44%, rgba(14, 11, 8, 0.1) 100%);
+  pointer-events: none;
+}
+
+#fts-title-image {
+  position: absolute;
+  top: clamp(8px, 2.5vh, 18px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(62%, 560px);
+  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.48));
+}
+
+#fts-site-nav {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: clamp(16px, 3vw, 34px);
+  padding: 6px 14px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.48);
+  backdrop-filter: blur(1px);
+  font-family: 'Jim Nightshade', cursive;
+  font-size: clamp(30px, 3vw, 44px);
+  line-height: 1;
+}
+
+#fts-site-nav a {
+  color: #f6dfaf;
+  text-decoration: none;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
+}
+
+#fts-site-nav a:hover {
+  color: #fff2cc;
+}
+
+#fts-parchment-panel {
+  margin-top: 16px;
+  padding: clamp(16px, 2.4vw, 28px);
+  border: 1px solid rgba(32, 23, 14, 0.52);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.32);
+  background:
+    linear-gradient(rgba(245, 231, 198, 0.88), rgba(234, 213, 168, 0.88)),
+    url('../assets/img/background.png') center center / cover no-repeat;
+  color: #1f1710;
+}
+
+#fts-heading-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+#fts-heading-row h1 {
+  margin: 0;
+  color: #16110c;
+  font-size: clamp(34px, 4vw, 58px);
+  line-height: 0.9;
+  font-family: 'Jim Nightshade', cursive;
+}
+
+#fts-heading-row .subtitle {
+  margin: 6px 0 0;
+  font-size: clamp(16px, 2vw, 21px);
+  font-family: 'Quattrocento', serif;
+}
+
+.meta-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.meta-chip {
+  display: inline-block;
+  padding: 6px 10px;
+  border: 1px solid rgba(35, 24, 15, 0.35);
+  background: rgba(255, 252, 243, 0.58);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  font-family: 'Quattrocento', serif;
+}
+
+.status-ok {
+  background: rgba(202, 237, 201, 0.95);
+  border-color: rgba(44, 105, 43, 0.4);
+}
+
+.status-warn {
+  background: rgba(255, 235, 174, 0.95);
+  border-color: rgba(131, 99, 22, 0.4);
+}
+
+.status-down {
+  background: rgba(251, 205, 199, 0.95);
+  border-color: rgba(130, 40, 40, 0.42);
+}
+
+.welcome-line {
+  margin: 12px 0 10px;
+  font-weight: 700;
+}
+
+#fts-parchment-panel p {
+  margin: 12px 0 0;
+  max-width: 86ch;
+}
+
+#fts-actions {
+  margin-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#fts-actions a {
+  text-decoration: none;
+  font-family: 'Quattrocento', serif;
+  border: 1px solid #21150d;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+#fts-actions a:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.28);
+}
+
+.action-primary {
+  padding: 10px 16px;
+  background: rgba(27, 20, 14, 0.92);
+  color: #f2d49b;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+.action-secondary {
+  padding: 10px 14px;
+  color: #1e1711;
+  background: rgba(255, 255, 255, 0.58);
+  border-radius: 8px;
+}
+
+@media (max-width: 780px) {
+  #fts-page {
+    align-items: flex-start;
+  }
+
+  #fts-hero-inner {
+    max-height: none;
+  }
+
+  #fts-title-image {
+    top: 8px;
+    width: min(75%, 430px);
+  }
+
+  #fts-site-nav {
+    font-size: clamp(25px, 8vw, 33px);
+    gap: 14px;
+    padding: 6px 10px;
+  }
+
+  #fts-heading-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .meta-grid {
+    justify-content: flex-start;
+  }
+}
