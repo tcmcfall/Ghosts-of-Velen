@@ -7,8 +7,6 @@ header('Content-Type: text/html; charset=utf-8');
 
 $isAuthenticated = isset($_SESSION['user_id'], $_SESSION['username']);
 $username = $isAuthenticated ? (string)$_SESSION['username'] : '';
-$primaryHref = $isAuthenticated ? '/map.php' : '/auth/login.php';
-$primaryLabel = $isAuthenticated ? 'Enter The Regional Map' : 'Sign In To Begin';
 ?>
 <!doctype html>
 <html lang="en">
@@ -22,49 +20,51 @@ $primaryLabel = $isAuthenticated ? 'Enter The Regional Map' : 'Sign In To Begin'
 </head>
 <body>
   <main id="fts-page">
-    <section id="fts-shell" aria-label="Fantasy Trade Simulator landing">
-      <div id="fts-hero-border">
-        <div id="fts-hero-inner">
-          <img id="fts-hero-art" src="../assets/img/banner_pirate_battle.png" alt="Ghosts of Velen maritime battle banner">
-          <div id="fts-hero-overlay"></div>
-          <img id="fts-title-image" src="../assets/img/GoV_title_banner_textured.png" alt="Ghosts of Velen">
-          <nav id="fts-site-nav" aria-label="Primary shortcuts">
-            <a href="/">Home</a>
-            <a href="/map.php">Map</a>
-            <a href="/auth/login.php">Login</a>
-          </nav>
-        </div>
-      </div>
-
-      <section id="fts-parchment-panel">
-        <header id="fts-heading-row">
-          <div>
-            <h1>Fantasy Trade Simulator</h1>
-            <p class="subtitle">Hosted Wizard Workbench</p>
-          </div>
-          <div class="meta-grid" aria-label="System status">
-            <span class="meta-chip">Alpha v0.1.0</span>
-            <span id="fts-health" class="meta-chip status-warn">Checking API</span>
-            <span id="fts-php-version" class="meta-chip">PHP Pending</span>
-          </div>
+    <section id="fts-folio" aria-label="Fantasy Trade Simulator landing">
+      <div class="folio-paper">
+        <header class="folio-header">
+          <p class="kicker">Ghosts of Velen</p>
+          <h1>Fantasy Trade Simulator</h1>
+          <p class="subtitle">Hosted Wizard Workbench</p>
         </header>
 
         <?php if ($isAuthenticated): ?>
           <p class="welcome-line">Welcome back, <?php echo htmlspecialchars($username, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?>.</p>
         <?php endif; ?>
 
-        <p>
-          Build and validate FTS campaign entities in a setting-native authoring flow, then export deterministic
-          toolkit-compatible payloads for runtime consumption.
-        </p>
+        <div class="folio-divider" aria-hidden="true"><span></span></div>
 
-        <div id="fts-actions">
-          <a class="action-primary" href="<?php echo htmlspecialchars($primaryHref, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?>">
-            <?php echo htmlspecialchars($primaryLabel, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?>
-          </a>
-          <a class="action-secondary" href="/api/fts/health.php">View API Health JSON</a>
+        <div class="folio-grid">
+          <section class="folio-copy" aria-label="Overview">
+            <p>
+              This workspace provides a campaign-safe authoring surface for FTS entities, trade narratives,
+              and deterministic export artifacts.
+            </p>
+            <p>
+              The hosted model keeps wizard data editable and auditable while preserving compatibility with
+              runtime toolkit contracts.
+            </p>
+            <ul class="feature-list">
+              <li>Schema-governed authoring for mapRegion, mapLocale, mapPoint, mapRoute, and mapAgent models.</li>
+              <li>Deterministic export + hashing pipeline aligned to toolkit import behavior.</li>
+              <li>Migration-backed data lifecycle with auditable operational events.</li>
+            </ul>
+          </section>
+
+          <aside class="folio-status" aria-label="System status">
+            <h2>System Status</h2>
+            <div class="meta-grid">
+              <span class="meta-chip">Alpha v0.1.0</span>
+              <span id="fts-health" class="meta-chip status-warn">Checking API</span>
+              <span id="fts-php-version" class="meta-chip">PHP Pending</span>
+            </div>
+            <p class="status-note">
+              Health endpoint:
+              <a href="/api/fts/health.php">/api/fts/health.php</a>
+            </p>
+          </aside>
         </div>
-      </section>
+      </div>
     </section>
   </main>
 
