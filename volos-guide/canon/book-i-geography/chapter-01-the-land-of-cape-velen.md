@@ -17,6 +17,8 @@ The Duchy of Cape Velen occupies the greater part of the Dragon's Neck Peninsula
 
 The peninsula is divided into five regions: The Western Cape; The Northern Coast (Tarseth Bay); The Southern Coast (Firedrake Bay); The Bite; and the Wealdath.
 
+To picture Cape Velen properly, imagine the silhouette of a dragon stretching its neck westward into the sea. Tarseth Bay forms the back of that neck. Tordraken sits at the back of the skull. Velen, nested among white cliffs, may be read as the dragon's eye. The Bite is not a northern marsh in abstraction, but the dragon's open maw: a deep western lagoon opening toward the Nelanther Isles. Saltmarsh marks the chin at the peninsula's far western reach, while Tulmene and Monguldarath sit along the back of the head or jaw. Firedrake Bay curves beneath as the underside of the neck returns toward the mainland.
+
 ### The Western Cape
 
 The political heart of the duchy, dominated by white cliffs surrounding the hidden harbor of Velen. Rich fisheries sustain the region despite poor farmland.
@@ -31,7 +33,7 @@ If Tarseth Bay is the duchy's shield, Firedrake Bay is its marketplace. Facing T
 
 ### The Bite
 
-A haunted marshy cove north of Saltmarsh filled with drowned estates, forgotten manors, tidal channels, and lingering supernatural tales.
+A haunted marshy lagoon immediately north of Saltmarsh at the peninsula's western extremity, filled with drowned estates, forgotten manors, tidal channels, and lingering supernatural tales. In the dragon-silhouette reading of the peninsula, this is the open maw itself.
 
 ### The Wealdath
 

@@ -14,10 +14,11 @@
 - **Velen** is the capital. There is no city named "Cape Velen."
 - **Dragon's Neck Peninsula** is the canonical geographic name; older references to Dragon's Head/Neck are normalized to Dragon's Neck in GoV prose unless quoting a source.
 - Cape Velen presently operates on the **two-county model**: **Firedrake County** and **Fyraven County**.
-- **The Bite** replaces the Hool Marshes adaptation: a haunted, marshy coastline north of Saltmarsh forming the dragon's maw.
+- For orientation, imagine the peninsula as the silhouette of a dragon stretching its neck westward into the Trackless Sea. **Tarseth Bay** forms the back of the neck; **Tordraken** sits at the back of the skull; **Velen** may be read as the dragon's eye; **The Bite** is the open west-facing maw as a deep lagoon toward the Nelanthers; **Saltmarsh** marks the chin at the peninsula's far western reach; **Tulmene** and **Monguldarath** sit along the back of the head/jaw; and **Firedrake Bay** runs along the underside of the neck as the land returns toward the mainland.
+- **The Bite** replaces the Hool Marshes adaptation: a haunted, marshy lagoon immediately north of Saltmarsh at the peninsula's western extremity, opening westward and forming the dragon's open maw.
 - **Burle is removed** from the Cape Velen adaptation.
 - Important Cape Velen locations developed in the Volo itinerary include Velen, Saltmarsh, Tulmene, Monguldarath, Oakbottom, Jhaansciim, Honorguard House, Shoremeet, Tordraken, the western Wealdath, and Woodfaire.
-- Directional frame: northwest points toward civilization, ports, commerce, and the Moonshaes; north/east increasingly toward war vigilance and Muranndin; south toward Saltmarsh, fishing, and Firedrake Bay; the interior belongs to the Wealdath and its elven history.
+- Directional frame: westward points toward the dragon's face, the Bite, open water, and the Nelanther-facing approaches; the back of the neck and skull run through Tarseth Bay and Tordraken; the underside of the neck drops into Firedrake Bay and the southern settlements; north/east increasingly point toward war vigilance and Muranndin; the interior belongs to the Wealdath and its elven history.
 
 ## Cultural identity
 
