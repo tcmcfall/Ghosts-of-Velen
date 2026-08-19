@@ -12,7 +12,8 @@
 
 - **Duchy of Cape Velen** is the state.
 - **Velen** is the capital. There is no city named "Cape Velen."
-- **Dragon's Neck Peninsula** is the standardized geographic name; older references to Dragon's Head/Neck are normalized to Dragon's Neck in GoV prose unless quoting a source.
+- **Dragon's Neck Peninsula** is the canonical geographic name; older references to Dragon's Head/Neck are normalized to Dragon's Neck in GoV prose unless quoting a source.
+- Cape Velen presently operates on the **two-county model**: **Firedrake County** and **Fyraven County**.
 - **The Bite** replaces the Hool Marshes adaptation: a haunted, marshy coastline north of Saltmarsh forming the dragon's maw.
 - **Burle is removed** from the Cape Velen adaptation.
 - Important Cape Velen locations developed in the Volo itinerary include Velen, Saltmarsh, Tulmene, Monguldarath, Oakbottom, Jhaansciim, Honorguard House, Shoremeet, Tordraken, the western Wealdath, and Woodfaire.
@@ -32,6 +33,7 @@ The campaign history subsequently diverges from published history:
 
 - Cape Velen became independent from Tethyr.
 - **Duke Calchais** was the ruler immediately before Aldric Thorne in the current approved Volo continuity.
+- Earlier three-county formulations are superseded in current continuity. The lost third county belongs to older history and was conquered by **Muranndin** before the present reclamation era.
 - Muranndin's rise devastated northern Tethyr, the Wealdath, and the Dragon's Neck.
 - Muranndin conquered the mountainous southern borders of Amn, burned and occupied huge swaths of the Wealdath, displaced Noromathian communities, and subjugated nearly half the Dragon's Neck Peninsula, reaching almost as far west as **Monguldarath**.
 - Muranndin's armies include orcs, hobgoblins, ogres, giants, and other monstrous forces. Their occupation is intentionally treated as a dark, brutal threat comparable in narrative weight to Mordor: militarized, cruel, oppressive, and spiritually destructive.

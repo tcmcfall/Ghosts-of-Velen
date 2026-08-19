@@ -75,19 +75,20 @@ The first may be intentionally inapplicable; the latter two can be developed if 
 
 ## Legacy workbook comparison
 
-The unversioned `Volos_Master_POI_Ledger_Cape_Velen.xlsx` is **not** simply a duplicate. It differs materially in ordering and wording and predates the v1.1.7 structure. It contains a `Tarseth Bay` row that is absent from v1.1.7, but that row has only its initial draw-to-location field completed. Treat this as recoverable legacy material, not current prose.
+The unversioned `Volos_Master_POI_Ledger_Cape_Velen.xlsx` is **not** simply a duplicate. It differs materially in ordering and wording and predates the v1.1.7 structure. It contains 41 location rows, but many of the entries outside the core travel route are only one field deep. Among them are `Tarseth Bay` and other scaffolded regional/landmark rows absent from v1.1.7. Treat this as recoverable legacy material, not current prose.
 
 The current v1.1.7 workbook adds/repositions material including `The Bite` and `Velean Noble Court` and contains extensive rewrites compared with the unversioned workbook.
 
-## Source-level continuity flags found during integration
+## Ratified source normalizations
 
-These are not silent corrections; they are review items discovered in the actual workbook.
+These came from the actual workbook and are now resolved for repository use. Preserve the original cell wording only when citing source provenance; use the normalized forms in current canon/manuscript prose.
 
-1. **Aldric spelling:** the Cape Velen `Who Rules or Holds Sway?` cell says `Duke Alric Thorne`. Current campaign canon uses **Aldric Thorne**. This appears to be a source typo and should be corrected in the workbook during the next controlled revision.
-2. **Dragon's Head wording:** that same cell refers to the western tip as the `Dragon's Head`. Current GoV standardization uses **Dragon's Neck Peninsula** and avoids reintroducing Dragon's Head as the principal geographic name. Review the intended local subregional usage before changing the source.
-3. **County structure:** the v1.1.7 Cape Velen entry says the duchy has **two counties**, Firedrake and Fyraven. Earlier unversioned wording says **three counties**. v1.1.7 wins as source precedence, but the global canon should explicitly confirm the two-county structure before publication.
-4. **Count Markus:** v1.1.7 identifies Markus Thorne as Count of Firedrake. This agrees with the recovered court scene, where Markus explains that his father presently rules the county while he learns.
-5. **Countess Altaine:** v1.1.7 identifies Countess Altaine as ruler of Fyraven, extending across central/eastern Cape Velen to Khalid's Wall, with Baron Aldus Conner sworn to her and holding Honorguard House.
+1. **Aldric spelling:** the Cape Velen `Who Rules or Holds Sway?` cell says `Duke Alric Thorne`. This is treated as a source typo. Canonical form is **Aldric Thorne**.
+2. **Dragon's Head wording:** that same cell refers to the western tip as the `Dragon's Head`. Repository canon normalizes this to **Dragon's Neck Peninsula** and does not treat Dragon's Head as a separate active regional label.
+3. **County structure:** the v1.1.7 Cape Velen entry says the duchy has **two counties**, Firedrake and Fyraven. That is now the ratified model. The older three-county formulation is superseded in current continuity; the lost third county belongs to the pre-reclamation history and was conquered by **Muranndin**.
+4. **Revolution continuity:** the active Volo/GoV line is **Duke Calchais / 1480 DR / Night of Blood**.
+5. **Count Markus:** v1.1.7 identifies Markus Thorne as Count of Firedrake. This agrees with the recovered court scene, where Markus explains that his father presently rules the county while he learns.
+6. **Countess Altaine:** v1.1.7 identifies Countess Altaine as ruler of Fyraven, extending across central/eastern Cape Velen to Khalid's Wall, with Baron Aldus Conner sworn to her and holding Honorguard House.
 
 ## Actionable manuscript sequence
 
@@ -110,4 +111,4 @@ The ledger now gives us enough material to stop reconstructing intermediate loca
 
 ## Integration rule
 
-The ledger is now the primary wording source for POI entries. The reconstructed thread files supply scene context, continuity, intent, and later decisions. Where a ledger cell and later explicit campaign decision conflict, flag the conflict and resolve it explicitly; do not silently rewrite one from the other.
+The ledger is now the primary wording source for POI entries. The reconstructed thread files supply scene context, continuity, intent, and later decisions. When a ledger cell preserves legacy wording that conflicts with ratified canon, keep the original only as provenance and use the canon-normalized form in active manuscript prose.

@@ -126,4 +126,4 @@ Do not resurrect or casually replace Moonbrook. The death is a key emotional eve
 
 Calchais's government is remembered as failing during the catastrophic Muranndin advance. Aldric believed his incompetence/inaction was costing civilian lives and ultimately chose revolution.
 
-**Continuity warning:** earlier development elsewhere used other names/dates for a prior duke. For the recovered Volo workstream, the latest explicit approved continuity is **Duke Calchais, overthrown in 1480 DR**. Reconcile other GoV files only through an explicit canon decision; do not silently blend the versions.
+**Continuity status:** this is the adopted GoV/Volo continuity. Duke Calchais was overthrown in **1480 DR** during the **Night of Blood**, and older local variants elsewhere in the project should be updated to match rather than blended into this line.

@@ -12,11 +12,11 @@ The current working artifacts have now been reviewed directly.
 - The unversioned `Volos_Master_POI_Ledger_Cape_Velen.xlsx` is a materially older/legacy ledger and must not overwrite v1.1.7 wording.
 - `Canon_Bible_Book_I_Geography_Chapter_1_The_Land_of_Cape_Velen.docx` has been integrated into repository-native Markdown at `canon/book-i-geography/chapter-01-the-land-of-cape-velen.md`.
 - `Volos_Guide_to_Cape_Velen_First_Pass_Outline.docx` is byte-for-byte identical to that Canon Bible DOCX despite its filename; it is therefore treated as a duplicate legacy artifact rather than a distinct outline.
-- `Volos_signature.png` is the current Volo signature publication asset.
-- Exact source hashes and intended binary repository paths are recorded in `research/current-working-files-inventory.md`.
-- POI completion, legacy differences, source-level continuity flags, and the next writing sequence are recorded in `gazetteer/ledger-status-and-action-map.md`.
+- `Volos_signature.png` is the current Volo signature publication asset and is now stored at `assets/Volos_signature.png`.
+- Exact source hashes and committed binary repository paths are recorded in `research/current-working-files-inventory.md`.
+- POI completion, legacy differences, ratified source normalizations, and the next writing sequence are recorded in `gazetteer/ledger-status-and-action-map.md`.
 
-The available GitHub connector writes UTF-8 text but does not accept mounted local binaries as file arguments. Consequently the source **content and provenance are integrated**, while the exact XLSX/DOCX/PNG binaries remain queued for physical commit through a binary-capable Git path. Their SHA-256 hashes prevent ambiguity about which files belong there.
+The supplied source binaries are now physically stored under `sources/` and `assets/`. The repository therefore preserves both the integrated Markdown content and the original binary artifacts needed to audit or refresh that content later. Their SHA-256 hashes prevent ambiguity about which files belong there.
 
 ## What has been recovered/integrated into the repository
 
@@ -63,21 +63,18 @@ Current completeness:
 
 See `gazetteer/ledger-status-and-action-map.md` before editing any POI.
 
-## Source-level continuity review required
+## Ratified continuity decisions now in force
 
-The actual v1.1.7 workbook revealed several items that need controlled cleanup rather than silent correction:
+The workbook/DOCX review revealed several legacy wording mismatches. They are now resolved for this branch and should be normalized deliberately whenever those source artifacts are revised:
 
-1. `Duke Alric Thorne` appears in the Cape Velen rule/authority cell; current campaign canon uses **Aldric Thorne**.
-2. The same cell uses `Dragon's Head`; current GoV standardization uses **Dragon's Neck Peninsula**. Determine whether the workbook intended a smaller local geographic feature before changing it.
-3. v1.1.7 says Cape Velen has **two counties** (Firedrake and Fyraven), while the older unversioned workbook says three. v1.1.7 has source precedence, but global canon should explicitly ratify the two-county model.
-4. The previously identified revolution continuity conflict remains: the recovered Volo workstream uses **Duke Calchais / 1480 DR / Night of Blood**, while other GoV development may contain another predecessor/date.
-
-Do not normalize these issues by accident. Resolve them explicitly and then make surgical source updates.
+1. `Duke Alric Thorne` in the workbook is treated as a typo. The canonical form is **Aldric Thorne**.
+2. `Dragon's Head` is superseded wording. The canonical geographic name is **Dragon's Neck Peninsula**.
+3. Cape Velen presently uses the **two-county model**: **Firedrake** and **Fyraven**. The earlier third-county model is historical/obsolete in this continuity; the lost third county was conquered by **Muranndin**.
+4. The governing revolution continuity is **Duke Calchais / 1480 DR / Night of Blood** and should overwrite older local variants elsewhere in GoV rather than being blended with them.
 
 ## Manuscript next steps
 
-1. **Ratify the continuity items above** so the manuscript and ledger share one political/geographic model.
-2. Source-check Chapter One against approved *Lands of Intrigue* and other source material, especially:
+1. Source-check Chapter One against approved *Lands of Intrigue* and other source material, especially:
    - Cape Velen's early Tethyrian status,
    - original duke/provincial history,
    - naval role against Nelanther pirates/corsairs/reavers,
@@ -86,14 +83,13 @@ Do not normalize these issues by accident. Resolve them explicitly and then make
    - Acoval's Cove,
    - Horn Cliffs,
    - Velen/Blackthorn/Great Wave history.
-3. Keep Chapter One to roughly two illustrated pages in final layout.
-4. Build travel chapters directly from v1.1.7 in journey order rather than from memory.
-5. Complete **The Bite** entry without inventing commerce or settlement where the location's nature makes a category inapplicable.
-6. Review the two missing **Wealdath** fields; preserve the established decision that shopping does not meaningfully apply there unless later canon changes it.
-7. Complete only useful missing **Velean Noble Court** fields and preserve the family/court/terrace sequence.
-8. Preserve the narrative escalation: skepticism -> curiosity -> frontier reality -> fear -> grief -> hope -> painful imperfection -> understanding.
-9. Close with the recovered departure scene.
-10. Physically commit the exact XLSX/DOCX/PNG source binaries under the paths listed in `research/current-working-files-inventory.md` when a binary-capable Git upload path is available.
+2. Keep Chapter One to roughly two illustrated pages in final layout.
+3. Build travel chapters directly from v1.1.7 in journey order rather than from memory, beginning with the Cape Velen overview and Velen arrival material.
+4. Complete **The Bite** entry without inventing commerce or settlement where the location's nature makes a category inapplicable.
+5. Review the two missing **Wealdath** fields; preserve the established decision that shopping does not meaningfully apply there unless later canon changes it.
+6. Complete only useful missing **Velean Noble Court** fields and preserve the family/court/terrace sequence.
+7. Preserve the narrative escalation: skepticism -> curiosity -> frontier reality -> fear -> grief -> hope -> painful imperfection -> understanding.
+8. Close with the recovered departure scene.
 
 ## Writing constraints
 
@@ -149,4 +145,4 @@ To pick up where this workstream now stands, read in this order:
 10. `research/current-working-files-inventory.md`
 11. This roadmap.
 
-The next substantive work should begin with explicit continuity ratification and then direct POI-to-manuscript integration from v1.1.7.
+The next substantive work should proceed directly to POI-to-manuscript integration from v1.1.7, beginning with the Cape Velen overview and Velen arrival while finishing the intentionally incomplete Bite, Wealdath, and Noble Court entries.

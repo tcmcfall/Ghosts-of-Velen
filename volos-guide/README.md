@@ -22,7 +22,8 @@ The purpose of this directory is continuity. It preserves the decisions, prose, 
 - `planning/` — roadmap, development status, open questions, and next-work instructions.
 - `research/` — source provenance, adaptation notes, and external-canon mapping.
 - `reconstruction/` — recovered thread decisions, story beats, and continuity notes from the original Volo conversation.
-- `assets/` — visual references and the working POI ledger used in this workstream.
+- `assets/` — visual references and publication assets, including Volo's signature.
+- `sources/` — copied binary source artifacts, split into current/working and legacy provenance files.
 
 ## Current narrative spine
 
